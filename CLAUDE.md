@@ -18,15 +18,19 @@ plan + 14-day free trial. A `prisma/schema.prisma` is kept for that later work.
 
 ## ⚠️ Environment specifics (READ FIRST — non-obvious)
 
-This is a **Windows Server 2019 box with only 4 GB RAM**, and the toolchain is
-**portable / not on the default PATH**. In a fresh PowerShell, prepend PATH first:
+This is a **Windows Server 2019 box with only 4 GB RAM**.
+
+- **Git**: full Git for Windows is installed **system-wide** at
+  `C:\Program Files\Git` and is on the system PATH (auto-detected by VS Code).
+- **Node.js 20** is a **portable** install at `C:\Users\Administrator\tools\nodejs`
+  and is **not** on the default PATH. In a fresh PowerShell, prepend it first:
 
 ```powershell
-$env:Path = "$env:Path;C:\Users\Administrator\tools\nodejs;C:\Users\Administrator\tools\git\cmd"
+$env:Path = "$env:Path;C:\Users\Administrator\tools\nodejs"
 ```
 
-- **Node.js 20** (portable): `C:\Users\Administrator\tools\nodejs`
-- **Git** (portable MinGit): `C:\Users\Administrator\tools\git\cmd`
+> Note: a leftover portable MinGit also exists at `C:\Users\Administrator\tools\git`,
+> but the system Git above is canonical.
 
 ### Memory constraint — do NOT run `next dev`
 `next dev` and even `next start` **crash with out-of-memory** on this machine.
