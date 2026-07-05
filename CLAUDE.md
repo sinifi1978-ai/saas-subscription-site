@@ -85,5 +85,17 @@ OOM/StackOverflow error, it's memory pressure — retry when more RAM is free.
 ## Git / GitHub
 
 - Remote: `git@github.com:sinifi1978-ai/saas-subscription-site.git` (SSH).
-- SSH is fully configured (`git config core.sshCommand` points at the key), so
-  `git push` works with **no token needed**. Just prepend the PATH first.
+- SSH is fully configured (`git config core.sshCommand` points at the ed25519 key
+  in `~/.ssh`), so `git push` works with **no token needed**. Git is on the system
+  PATH, so plain `git` works in any shell.
+
+## Deployment (Vercel)
+
+- The repo is connected to **Vercel**, which **auto-deploys on every push to
+  `main`** — no local build needed (Vercel builds in the cloud, sidestepping the
+  4 GB RAM limit above).
+- Live URL: **https://saas-subscription-site.vercel.app**
+- Currently deploys as a **static site** (because of `output: "export"`). When the
+  backend is added, remove `output: "export"` from `next.config.ts` so Vercel runs
+  it as a full Next.js app (SSR/serverless), and set the real env vars
+  (`DATABASE_URL`, `AUTH_SECRET`, Stripe keys) in the Vercel dashboard.
